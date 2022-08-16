@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contect %}
+
+<img style="width: 200px;" src="{% static 'images/profiles/cat.jpg' %}">
+
+<h1>all our countries</h1>  
+  <table>
+    <thead>
+        <tr>
+            <th> country:     </th>
+            <th> flag:    </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+<tbody>
+    {% for country in countries %}
+    <tr>
+        <td><a href="{% url 'country' country.id %}">{{country.name}}</a> </td>
+        <td><a href="{% url 'country' country.id %}">
+            <img style="width: 20px;" src="{{country.imageURL}}"></a></td>
+        <td>{% if country.active%} <strong> Active</strong> {% endif %}</td> 
+        <td><a href="{% url 'update-country' country.id %}">Edit</a></td>
+        <td><a href="{% url 'delete-country' country.id %}">Delete</a></td>
+    </tr>
+
+    {% endfor%}
+    </tbody>
+</table>
+   
+{% endblock contect %}

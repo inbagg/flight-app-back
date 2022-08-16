@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block contect %}
+
+<img style="width: 200px;" src="{% static 'images/profiles/cat.jpg' %}">
+
+<h1>all our customers</h1>  
+  <table>
+    <thead>
+        <tr>
+            <th> Last Name:     </th>
+            <th> First Name:    </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+<tbody>
+    {% for customer in customers%}
+    <tr>
+        <td><a href="{% url 'customer' customer.id %}">{{customer.first_Name}}</a> </td>
+        <td><a href="{% url 'customer' customer.id %}">{{customer.last_Name}}</a></td>
+        <td>{% if customer.active%} <strong> Active</strong> {% endif %}</td> 
+        <td><a href="{% url 'update-customer' customer.id %}">Edit</a></td>
+        <td><a href="{% url 'delete-customer' customer.id %}">Delete</a></td>
+    </tr>
+
+    {% endfor%}
+    </tbody>
+</table>
+   
+{% endblock contect %}
